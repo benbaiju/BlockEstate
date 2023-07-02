@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+  <script src="{% static 'login.js' %}"></script>
+
+
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <h1><b>Block Estate</b></h1><br><br>
+<div class="container" id="container">
+	<div class="form-container sign-in-container">
+		<form action="{% url 'register' %}" method="POST">
+      {% csrf_token %}
+			<h1>Sign up</h1><br>
+			<div class="form-group">
+            <input style="background-color: beige;border: 2px solid gray;
+      border-radius: 4px;" type="text" class="form-control form-control-sm" name="name" placeholder="Name" required/>
+	  		<input style="background-color: beige;border: 2px solid gray;
+        border-radius: 4px;" type="tel" class="form-control form-control-sm" name="mobile" placeholder="Mobile Number" pattern="[789][0-9]{9}" title="Please Enter a Valid Mobile Number" required/>
+      <input style="background-color: beige;border: 2px solid gray; 
+      border-radius: 4px;" class="form-control form-control-sm" type="text" name="address" placeholder="Address" required/>
+            <select class="form-control" name="gender" style="background-color: beige;border: 2px solid gray;
+            border-radius: 4px;">
+                <option value="Select Gender">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            
+      <input style="background-color: beige;border: 2px solid gray;
+      border-radius: 4px;" type="text" name="p_address" class="form-control form-control-sm" placeholder="Blockchain Address" required/>
+			<input style="background-color: beige;border: 2px solid gray;
+      border-radius: 4px;" type="text" name="username" class="form-control form-control-sm" placeholder="Username" required/>
+			<input style="background-color: beige;border: 2px solid gray;
+      border-radius: 4px;" type="password" class="form-control form-control-sm" name="password" placeholder="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+      title="Password must contain at least 8 characters, including at least one letter, one number, and one special character: @$!%*#?&" required/>
+    </div>
+			<input type="submit" class="btn btn-primary" style="width:220px;" value="Sign up">
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<a href="{% url 'show_index' %}" class="ghost btn btn-success" id="signUp">Go to Login</a>
+			</div>
+		</div>
+	</div>
+</div>
+

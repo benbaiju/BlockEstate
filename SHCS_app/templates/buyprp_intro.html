@@ -1,0 +1,183 @@
+{% load static %} {% static "" as img %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Select Buy Type</title>
+
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/templatemo-leadership-event.css' %}" rel="stylesheet">
+                    
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    
+    <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+    <!------------------------------------------------------------------------->
+        <link href="{% static 'css/font-awesome.min1.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/linearicons/style.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/flat-icon/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/stroke-icon/style.css' %}" rel="stylesheet">
+    
+        <link href="{% static 'vendors/revolution/css/settings.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/revolution/css/layers.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/revolution/css/navigation.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/animate-css/animate.css' %}" rel="stylesheet">
+    
+        <link href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/datetime-picker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/nice-select/css/nice-select.css' %}" rel="stylesheet">
+        <link href="{% static 'vendors/magnifc-popup/magnific-popup.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/style1.css' %}" rel="stylesheet">
+        <link href="{% static 'css/responsive1.css' %}" rel="stylesheet">
+    
+
+    </head>
+    
+    <body id="hh">
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container" id="hi">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a href="{% url 'show_home_user' %}" class="navbar-brand mx-auto mx-lg-0">
+                    <i class="bi-bullseye brand-logo"></i>
+                    <span class="brand-text">Block <br> Estate</span>
+                </a>
+
+              
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                           <li class="nav-item">
+                            <a class="nav-link" href="{% url 'show_home_user' %}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'sell_intro' %}">Sell</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'View_s' %}">View</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Buy' %}">Buy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Transactin_tab' %}">Transaction Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'buyprp_intro' %}">Bought Properties</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'show_price_predictor'%}">Price Predictor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link custom-btn btn d-none d-lg-block" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    </ul>
+                        
+            </div>
+        </nav>
+
+        <main>
+            
+
+            <section class="our_cakes_area sdd section-padding p_100">
+            <h1 style="text-align: center; margin-top:0px;color: #2bbee1; font-size: 60px; font-weight: bold;">Select Bought Propery Type</h1><br><br>
+            <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <form action="{% url 'buyprp' %}" class="custom-form contact-form bg-white shadow-lg"method="post" role="form" style="width: 400px;margin: auto;height: 300px; " enctype="multipart/form-data";>{% csrf_token %}
+                                <h2 class="d-flex justify-content-center">Select Type</h2>
+                                <div class="form-group">
+                                    <select id="l2" name="Select" class="form-select form-select-lg mb-3" aria-label="form-select-lg example" style="width: 360px;margin: auto;" required>
+                                        <option disabled selected >Select(Normal or Token)</option>
+                                        <option value="Normal">Normal</option>
+                                        <option value="Token">Token</option>
+                                    </select>
+<input type="submit" id="bu" class="btn btn-info" value="Submit" style="width: 120px;height: 50px;color: white;border-radius: 12px;margin-left: 36%;">
+                                    </div>
+                                    </form>
+                                </div>
+                            
+                        </div>
+
+                    </div>
+    </section>
+            
+        </main>
+
+        <footer class="container" style="height: 70px;">
+            <div class="container">
+
+
+                        <div  style="text-align: center;margin-top: 40px;">
+                            <p class="copyright-text ms-lg-auto me-4 mb-0">Copyright © Block Estate 
+
+                            
+                        </div>
+                    </div>
+
+                    
+
+        </footer>
+
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/custom.js"></script>
+        <!---------------------------------------------------------------------->
+          
+        <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>
+        
+        <script src="{% static 'js1/popper.min.js' %}"></script>
+        <script src="{% static 'js1/bootstrap.min.js' %}"></script>
+        
+        <script src="{% static 'vendors/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+        <script src="{% static 'vendors/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+        <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+        <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+        <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+        <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+        <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+        
+        <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'vendors/magnifc-popup/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'vendors/datetime-picker/js/moment.min.js' %}"></script>
+        <script src="{% static 'vendors/datetime-picker/js/bootstrap-datetimepicker.min.js' %}"></script>
+        <script src="{% static 'vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+        <script src="{% static 'vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'vendors/lightbox/simpleLightbox.min.js' %}"></script>
+
+        <script src="{% static 'js1/theme.js' %}"></script>
+        <script src="js1/theme.js"></script>
+        <!-------------------------------------------------------------------------->
+
+
+    </body>
+</html>

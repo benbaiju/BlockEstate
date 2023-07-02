@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>View Requests Admin</title>
+
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/templatemo-leadership-event.css' %}" rel="stylesheet">
+                    
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    
+    <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static 'datatable/jquery.dataTables.min.css' %}">
+    <script type="text/javascript" src="{% static 'datatable/jquery.dataTables.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'datatable/bootstable.min.js' %}"></script>
+
+    <script type="text/javascript">
+    
+        $(document).ready(function(){
+
+            $('#table').DataTable();
+        })
+    </script>
+
+    <style>
+        #table{background:lightblue ;color: black}
+        .a{background: lightblue;padding-left: 400px;}
+
+        #approve{background: green;border-radius: 12px;}
+        #reject{background: orange;border-radius: 12px;}
+        td:hover{background-color: lightpink;}
+        tr:hover{background-color:lightskyblue;}
+        #approve:hover{background-color: lightgreen;}
+        #reject:hover{background-color: red;}
+
+    </style>
+  
+    </head>
+    
+    <body id="hh">
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container" id="hi">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a href="{% url 'show_home_admin' %}" class="navbar-brand mx-auto mx-lg-0">
+                    <i class="bi-bullseye brand-logo"></i>
+                    <span class="brand-text">Block <br> Estate</span>
+                </a>
+
+              
+
+                 <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'show_home_admin' %}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'show_request_admin' %}">View Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'show_user_admin' %}">View Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link custom-btn btn d-none d-lg-block" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    </ul>
+                        
+                </div>
+        </nav>
+
+        <main>
+            <section class="hello section-padding" id="section_7">
+                <h2 style="text-align: center; margin-top:0px;">View Requests</h2><br><br>
+
+        <div class='table-responsive container-fluid'>
+          <table class="table table-bordered b-t b-light" id="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Mobile number</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Public Address</th>
+                <th>Approve</th>
+                <th>Reject</th>
+             </tr>
+            </thead>
+            <tbody>
+
+                {% for i in req %}
+
+                  <tr>
+                    <form action="{% url 'approve' %}" method="POST">
+                        {% csrf_token %}
+                        <td id="u_id">{{i.r_id}}<input type="text" name="r_id"  value="{{i.r_id}}" hidden></td>
+                        <td>{{i.name}}<input type="text" name="name" value="{{i.name}}" hidden></td>
+                        <td data-search="{{i.username}}" data-filer="{{i.username}}">{{i.username}}<input type="text" name="username" id="username" value="{{i.username}}" hidden>
+                        <input type="text" name="password" value="{{i.password}}" hidden></td>
+
+                        <td>{{i.mobile}}<input type="number" name="mobile" value="{{i.mobile}}" hidden></td>
+
+                        <td >{{i.address}}<input type="text" name="address" value="{{i.address}}" hidden></td>
+                        <td >{{i.gender}}<input type="text" name="gender" value="{{i.gender}}" hidden></td>
+
+                        <td >{{i.p_address}}<input type="text" name="p_address" value="{{i.p_address}}" hidden></td>
+                        <td ><input type="submit" name="approve"  id="approve" value="Approve"></td>
+                    </form>
+                    <form action="{% url 'reject' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="r_id"  value="{{i.r_id}}">
+                        <td ><input type="submit" name="reject" id="reject"  value="Reject"></td>
+
+                    </form>
+                  </tr>
+
+                {% endfor %}
+             
+              
+            </tbody>
+          </table>
+        </div>
+        <div style="padding-top: 160px;"></div>
+
+        </main>
+
+        <footer class="container" style="height: 70px;">
+            <div class="container">
+
+
+                        <div  style="text-align: center;margin-top: 40px;">
+                            <p class="copyright-text ms-lg-auto me-4 mb-0">Copyright © Block Estate 
+
+                            
+                        </div>
+                    </div>
+
+                    
+
+        </footer>
+
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/custom.js"></script>
+
+    </body>
+</html>

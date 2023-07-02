@@ -1,0 +1,186 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Transaction Table</title>
+
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/templatemo-leadership-event.css' %}" rel="stylesheet">
+                    
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    
+    <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static 'datatable/jquery.dataTables.min.css' %}">
+    <script type="text/javascript" src="{% static 'datatable/jquery.dataTables.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'datatable/bootstable.min.js' %}"></script>
+
+    <script type="text/javascript">
+    
+        $(document).ready(function(){
+
+            $('#table').DataTable();
+        })
+    </script>
+
+    <style>
+        #table{background:lightblue ;color: black}
+        .a{background: lightblue;padding-left: 400px;}
+
+        #approve{background: green;border-radius: 12px;}
+        #reject{background: orange;border-radius: 12px;}
+        td:hover{background-color: lightpink;}
+        tr:hover{background-color:lightskyblue;}
+        #approve:hover{background-color: lightgreen;}
+        #reject:hover{background-color: red;}
+
+    </style>
+  
+    </head>
+    
+    <body id="hh">
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container" id="hi">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a href="{% url 'show_home_user' %}" class="navbar-brand mx-auto mx-lg-0">
+                    <i class="bi-bullseye brand-logo"></i>
+                    <span class="brand-text">Block <br> Estate</span>
+                </a>
+
+              
+
+                 <div class="collapse navbar-collapse" id="navbarNav">
+                   <ul class="navbar-nav ms-auto">
+                           <li class="nav-item">
+                            <a class="nav-link" href="{% url 'show_home_user' %}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'sell_intro' %}">Sell</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'View_s' %}">View</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Buy' %}">Buy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Transactin_tab' %}">Transaction Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'buyprp_intro' %}">Bought Properties</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'show_price_predictor'%}">Price Predictor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link custom-btn btn d-none d-lg-block" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    </ul>
+                        
+                </div>
+        </nav>
+
+        <main>
+            <section class="gthh section-padding" id="section_7">
+                <h1 style="text-align: center; margin-top:0px;color: #2bbee1; font-size: 60px; font-weight: bold;">View Transactions</h1><br><br>
+
+        <div class='table-responsive container'>
+          <table class="table table-bordered b-t b-light" id="table">
+            <thead>
+              <tr> 
+                <th>Sender Name</th>
+                <th>Sender Address</th>
+                <th>Receiver Name</th>
+                <th>Receiver Address</th>
+                <th>Prp_id</th>
+                <th>Amount</th>
+                <th>T_hash</th>
+             </tr>
+            </thead>
+            <tbody>
+
+                {% for mykey,myvalue in obj.items %}
+
+                  <tr>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <!--<td id="u_id">{{mykey}}<input type="text" name="u_id"  value="{{mykey}}" hidden></td>-->
+
+                        <!--['Sender_name','Sender_address','Receiver_name','Receiver_address','Prp_id','Amount','T_hash']-->
+                        <td data-search="{{i.Sender_name}}" data-filter="{{i.Sender_name}}">{% for k1,v1 in myvalue.items %}{% if k1 == 'Sender_name' %} {{v1}} {% endif %}{% endfor %}<input type="text" name="Sender_name" id="Sender_name" value="{% for k1,v1 in myvalue.items %}{% if k1 == 'Sender_name' %} {{v1}} {% endif %}{% endfor %}" hidden></td>
+
+                        <td>{% for k1,v1 in myvalue.items %}{% if k1 == 'Sender_address' %} {{v1}} {% endif %}{% endfor %}<input type="text" name="Sender_address" value="{% for k1,v1 in myvalue.items %}{% if k1 == 'Sender_address' %} {{v1}} {% endif %}{% endfor %}" hidden></td>
+
+                        <td >{% for k1,v1 in myvalue.items %}{% if k1 == 'Receiver_name' %} {{v1}} {% endif %}{% endfor %}<input type="text" name="Receiver_name" value="{% for k1,v1 in myvalue.items %}{% if k1 == 'Receiver_name' %} {{v1}} {% endif %}{% endfor %}" hidden></td>
+
+                        <td>{% for k1,v1 in myvalue.items %}{% if k1 == 'Receiver_address' %} {{v1}} {% endif %}{% endfor %}<input type="text" name="Receiver_address" value="{% for k1,v1 in myvalue.items %}{% if k1 == 'Receiver_address' %} {{v1}} {% endif %}{% endfor %}" hidden></td>
+
+                        <td data-search="{{i.Prp_id}}" data-filter="{{i.Prp_id}}">{% for k1,v1 in myvalue.items %}{% if k1 == 'Prp_id' %} {{v1}} {% endif %}{% endfor %}<input type="text" name="Prp_id" value="{% for k1,v1 in myvalue.items %}{% if k1 == 'Prp_id' %} {{v1}} {% endif %}{% endfor %}" hidden></td>
+
+                        <td>{% for k1,v1 in myvalue.items %}{% if k1 == 'Amount' %} {{v1}} {% endif %}{% endfor %}<input type="text" name="Amount" value="{% for k1,v1 in myvalue.items %}{% if k1 == 'Amount' %} {{v1}} {% endif %}{% endfor %}" hidden></td>
+                        <td>{% for k1,v1 in myvalue.items %}{% if k1 == 'T_hash' %} {{v1}} {% endif %}{% endfor %}<input type="text" name="T_hash" value="{% for k1,v1 in myvalue.items %}{% if k1 == 'T_hash' %} {{v1}} {% endif %}{% endfor %}" hidden></td>
+                    </form>
+                  </tr>
+
+                {% endfor %}
+             
+              
+            </tbody>
+          </table>
+        </div>
+        <div style="padding-top: 160px;"></div>
+
+        </main>
+
+        <footer class="container" style="height: 70px;">
+            <div class="container">
+
+
+                        <div  style="text-align: center;margin-top: 40px;">
+                            <p class="copyright-text ms-lg-auto me-4 mb-0">Copyright © Block Estate 
+
+                            
+                        </div>
+                    </div>
+
+                    
+
+        </footer>
+
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/custom.js"></script>
+
+    </body>
+</html>
